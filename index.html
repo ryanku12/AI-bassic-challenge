@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kokoa Challenge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="playlist">
+      <!-- Header -->
+      <header class="playlist__header">
+        <button class="playlist__close" aria-label="닫기">
+          <i class="fas fa-times"></i>
+        </button>
+        <h1 class="playlist__header-title">Playlist</h1>
+      </header>
+
+      <!-- Cover + Title -->
+      <section class="playlist__info">
+        <div class="playlist__cover">
+          <i class="far fa-image"></i>
+        </div>
+        <div class="playlist__meta">
+          <h2 class="playlist__title">Random Love</h2>
+          <p class="playlist__author">by Divay Kapoor</p>
+        </div>
+      </section>
+
+      <!-- Action buttons -->
+      <section class="playlist__actions">
+        <button class="playlist__play">
+          <i class="fas fa-play"></i>
+          <span>Play</span>
+        </button>
+        <button class="playlist__btn-circle" aria-label="좋아요">
+          <i class="far fa-heart"></i>
+        </button>
+        <button class="playlist__btn-circle" aria-label="추가">
+          <i class="fas fa-plus"></i>
+        </button>
+      </section>
+
+      <!-- Song list -->
+      <ul class="playlist__songs">
+        <li class="song">
+          <div class="song__thumb song__thumb--matargasti"></div>
+          <div class="song__info">
+            <h3 class="song__title">Matargasti</h3>
+            <p class="song__artist">Mohit Chauhan</p>
+          </div>
+        </li>
+        <li class="song">
+          <div class="song__thumb song__thumb--attitude"></div>
+          <div class="song__info">
+            <h3 class="song__title">Attitude</h3>
+            <p class="song__artist">Lewis OfMan · Attitude</p>
+          </div>
+        </li>
+        <li class="song">
+          <div class="song__thumb song__thumb--try"></div>
+          <div class="song__info">
+            <h3 class="song__title">Try Everthing</h3>
+            <p class="song__artist">Shakira · Zootopia</p>
+          </div>
+        </li>
+        <li class="song">
+          <div class="song__thumb song__thumb--sunflower"></div>
+          <div class="song__info">
+            <h3 class="song__title">Sunflower</h3>
+            <p class="song__artist">Joseph Vincent · Sunflower</p>
+          </div>
+        </li>
+      </ul>
+    </main>
+
+    <!-- X DON'T DELETE THIS OR WORRY ABOUT THIS 👆 X -->
+    <script
+      src="https://kit.fontawesome.com/b5ac015c11.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
