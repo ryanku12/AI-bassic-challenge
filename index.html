@@ -1,83 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
-    <title>Kokoa Challenge</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momentum</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="playlist">
-      <!-- Header -->
-      <header class="playlist__header">
-        <button class="playlist__close" aria-label="닫기">
-          <i class="fas fa-times"></i>
-        </button>
-        <h1 class="playlist__header-title">Playlist</h1>
-      </header>
+    <!-- 우측 상단: 날씨 위젯 -->
+    <div class="weather hidden" id="weather">
+      <span class="weather__city" id="weather-city"></span>
+      <span class="weather__temp" id="weather-temp"></span>
+      <span class="weather__desc" id="weather-desc"></span>
+    </div>
 
-      <!-- Cover + Title -->
-      <section class="playlist__info">
-        <div class="playlist__cover">
-          <i class="far fa-image"></i>
-        </div>
-        <div class="playlist__meta">
-          <h2 class="playlist__title">Random Love</h2>
-          <p class="playlist__author">by Divay Kapoor</p>
-        </div>
+    <!-- 좌측 상단: 로그아웃 (로그인 후 노출) -->
+    <button class="logout hidden" id="logout-btn" type="button">로그아웃</button>
+
+    <main class="container">
+      <!-- 시계 -->
+      <section class="clock">
+        <h1 class="clock__time" id="clock-time">00:00:00</h1>
+        <p class="clock__date" id="clock-date"></p>
       </section>
 
-      <!-- Action buttons -->
-      <section class="playlist__actions">
-        <button class="playlist__play">
-          <i class="fas fa-play"></i>
-          <span>Play</span>
-        </button>
-        <button class="playlist__btn-circle" aria-label="좋아요">
-          <i class="far fa-heart"></i>
-        </button>
-        <button class="playlist__btn-circle" aria-label="추가">
-          <i class="fas fa-plus"></i>
-        </button>
-      </section>
+      <!-- 로그인 폼 (비로그인 상태에서만 노출) -->
+      <form class="login-form" id="login-form">
+        <input
+          class="login-form__input"
+          type="text"
+          id="login-input"
+          placeholder="이름을 입력하세요"
+          maxlength="15"
+          required
+        />
+        <button class="login-form__btn" type="submit">로그인</button>
+      </form>
 
-      <!-- Song list -->
-      <ul class="playlist__songs">
-        <li class="song">
-          <div class="song__thumb song__thumb--matargasti"></div>
-          <div class="song__info">
-            <h3 class="song__title">Matargasti</h3>
-            <p class="song__artist">Mohit Chauhan</p>
-          </div>
-        </li>
-        <li class="song">
-          <div class="song__thumb song__thumb--attitude"></div>
-          <div class="song__info">
-            <h3 class="song__title">Attitude</h3>
-            <p class="song__artist">Lewis OfMan · Attitude</p>
-          </div>
-        </li>
-        <li class="song">
-          <div class="song__thumb song__thumb--try"></div>
-          <div class="song__info">
-            <h3 class="song__title">Try Everthing</h3>
-            <p class="song__artist">Shakira · Zootopia</p>
-          </div>
-        </li>
-        <li class="song">
-          <div class="song__thumb song__thumb--sunflower"></div>
-          <div class="song__info">
-            <h3 class="song__title">Sunflower</h3>
-            <p class="song__artist">Joseph Vincent · Sunflower</p>
-          </div>
-        </li>
-      </ul>
+      <!-- 대시보드: 인사 + 투두리스트 (로그인 후 노출) -->
+      <section class="dashboard hidden" id="dashboard">
+        <h2 class="greeting" id="greeting"></h2>
+
+        <div class="todo">
+          <h3 class="todo__title">할 일 목록</h3>
+
+          <form class="todo__form" id="todo-form">
+            <input
+              class="todo__input"
+              type="text"
+              id="todo-input"
+              placeholder="새로운 할 일을 입력하세요"
+              maxlength="50"
+              required
+            />
+            <button class="todo__add" type="submit">추가</button>
+          </form>
+
+          <ul class="todo__list" id="todo-list"></ul>
+        </div>
+      </section>
     </main>
 
-    <!-- X DON'T DELETE THIS OR WORRY ABOUT THIS 👆 X -->
-    <script
-      src="https://kit.fontawesome.com/b5ac015c11.js"
-      crossorigin="anonymous"
-    ></script>
+    <!-- 모듈별 분리: 의존성이 없는 순서대로 로드 -->
+    <script src="background.js"></script>
+    <script src="clock.js"></script>
+    <script src="login.js"></script>
+    <script src="todo.js"></script>
+    <script src="weather.js"></script>
   </body>
 </html>
