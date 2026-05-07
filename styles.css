@@ -1,223 +1,280 @@
-/* DONT DELETE THIS */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
-/* WRITE YOUR CODE BELOW */
-
-/* =========================================================
-   BASE
-   ========================================================= */
+/* ========== Reset & Base ========== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  background: #ffffff;
-  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+    "Pretendard", "Noto Sans KR", sans-serif;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  background-color: #1a1a1a;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  /* meyer-reset가 line-height: 1 로 만들어 버려서 기본값 보정 */
-  line-height: 1.4;
+  overflow-x: hidden;
 }
 
 button {
   font-family: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  padding: 0;
   cursor: pointer;
+  border: none;
+  color: inherit;
+  text-shadow: inherit;
 }
 
-/* =========================================================
-   PLAYLIST CARD
-   ========================================================= */
-.playlist {
-  width: 100%;
-  max-width: 380px;
-  background: #ffffff;
-  border: 5px solid #2bd4bd;
-  padding: 30px 28px;
+ul {
+  list-style: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========== Layout ========== */
+.container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /*  사이드 퀘스트 2: 페이지 전체가 늘어나지 않도록 카드 높이 제한 */
-  max-height: 92vh;
-}
-
-/* ---------- Header ---------- */
-.playlist__header {
-  position: relative;
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 32px;
+  padding: 24px;
+  gap: 28px;
 }
 
-.playlist__close {
-  position: absolute;
-  left: 0;
-  font-size: 24px;
+/* ========== Glass utility ========== */
+.glass,
+.weather,
+.logout,
+.login-form__input,
+.login-form__btn,
+.todo__input,
+.todo__add,
+.todo__list li,
+.todo__list button {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #fff;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.playlist__header-title {
-  font-size: 24px;
-  font-weight: 800;
-}
-
-/* ---------- Info (cover + title) ---------- */
-.playlist__info {
+/* ========== Weather (top-right) ========== */
+.weather {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 22px;
-  margin-bottom: 28px;
+  gap: 2px;
+  border-radius: 14px;
+  font-size: 13px;
+  z-index: 10;
 }
 
-.playlist__cover {
-  width: 115px;
-  height: 115px;
-  flex-shrink: 0;
-  background: #ffb800;
-  border-radius: 18px;
+.weather__temp {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.weather__desc {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* ========== Logout (top-left) ========== */
+.logout {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  z-index: 10;
+}
+
+.logout:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ========== Clock ========== */
+.clock {
+  text-align: center;
+}
+
+.clock__time {
+  font-size: clamp(48px, 9vw, 88px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.05;
+}
+
+.clock__date {
+  margin-top: 6px;
+  font-size: clamp(13px, 1.6vw, 16px);
+  opacity: 0.9;
+}
+
+/* ========== Login form ========== */
+.login-form {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 42px;
+  gap: 10px;
+  width: min(320px, 90%);
 }
 
-.playlist__meta {
-  flex: 1;
-  /*  사이드 퀘스트 1: 자식의 줄바꿈/ellipsis가 동작하도록 */
-  min-width: 0;
+.login-form__input,
+.login-form__btn {
+  width: 100%;
+  padding: 10px 18px;
+  font-size: 14px;
+  text-align: center;
 }
 
-.playlist__title {
-  font-size: 40px;
-  font-weight: 800;
-  /* 큰 제목이 두 줄일 때 줄 간격이 너무 넓지 않도록 */
-  line-height: 1.0;
-  margin-bottom: 12px;
-  /*  사이드 퀘스트 1: 긴 제목이 옆 요소를 밀어내지 않고 줄바꿈 */
-  overflow-wrap: break-word;
-  word-break: break-word;
+.login-form__input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.playlist__author {
-  font-size: 15px;
-  font-weight: 700;
+.login-form__input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.28);
 }
 
-/* ---------- Action buttons ---------- */
-.playlist__actions {
+.login-form__btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ========== Dashboard / Greeting ========== */
+.dashboard {
+  width: min(520px, 92%);
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-/*  border-width */
-.playlist__play {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px 0;
-  background: #ffffff;
-  border: 3px solid #000000;
-  border-bottom-width: 7px;
-  border-right-width: 7px;
-  border-radius: 40px;
-  font-size: 19px;
-  font-weight: 800;
-  transition: transform 0.08s ease, border-width 0.08s ease;
-}
-
-.playlist__play:active {
-  border-bottom-width: 3px;
-  border-right-width: 3px;
-  transform: translate(2px, 2px);
-}
-
-.playlist__btn-circle {
-  width: 54px;
-  height: 54px;
-  flex-shrink: 0;
-  background: #ffffff;
-  border: 3px solid #000000;
-  border-bottom-width: 5px;
-  border-right-width: 5px;
-  border-radius: 50%;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.08s ease, border-width 0.08s ease;
-}
-
-.playlist__btn-circle:active {
-  border-bottom-width: 3px;
-  border-right-width: 3px;
-  transform: translate(1px, 1px);
-}
-
-/* =========================================================
-   SONG LIST
-   ========================================================= */
-/*  사이드 퀘스트 2: 리스트 영역만 스크롤되도록 */
-.playlist__songs {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-.song {
-  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 18px;
-  padding: 14px 0;
 }
 
-.song__thumb {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  flex-shrink: 0;
+.greeting {
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-weight: 600;
+  text-align: center;
 }
 
-.song__thumb--matargasti { background: #ff5722; }
-.song__thumb--attitude   { background: #ffb6c4; }
-.song__thumb--try        { background: #2a2ae0; }
-.song__thumb--sunflower  { background: #2bd4bd; }
-
-.song__info {
-  flex: 1;
-  /*  사이드 퀘스트 1 보조: ellipsis 동작용 */
-  min-width: 0;
+/* ========== Todo ========== */
+.todo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.song__title {
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  /*  사이드 퀘스트 1: 긴 제목이 옆 요소를 밀어내지 않고 ellipsis */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.song__artist {
-  font-size: 15px;
+.todo__title {
+  font-size: 14px;
   font-weight: 500;
-  color: #555555;
-  line-height: 1.4;
+  opacity: 0.95;
+}
+
+.todo__form {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+}
+
+.todo__input {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+.todo__input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.todo__input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.todo__add {
+  padding: 10px 18px;
+  font-size: 13px;
+}
+
+.todo__add:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.todo__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo__list li {
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.todo__list li.is-done .todo__text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo__text {
+  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.todo__list button {
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+.todo__list button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========== Mobile ========== */
+@media (max-width: 480px) {
+  .weather {
+    top: 14px;
+    right: 14px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .weather__temp {
+    font-size: 18px;
+  }
+  .logout {
+    top: 14px;
+    left: 14px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
